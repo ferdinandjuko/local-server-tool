@@ -1,0 +1,26 @@
+localhost {
+	#root C:\install\caddy
+	#root F:\project\hobbiinn\public
+	root F:\Projet\crm_asareo_madagascar\public
+	#root C:\install\caddy\www
+	#root F:\project\numerisation_INSI\plateforme_INSI\public
+	encode zstd gzip
+	templates
+	file_server browse
+
+	#reverse_proxy http://127.0.0.1:8069 {
+	#    header_up X-Forwarded-Proto https
+	#    header_up X-Forwarded-Host {host}
+	#    header_up X-Real-IP {remote}
+	#    header_up X-Forwarded-For {remote}
+	#}
+	php_fastcgi 127.0.0.1:6545
+
+	log {
+		output file C:\install\caddy\error.log
+		format json
+		level ERROR
+	}
+
+	#respond "Not Found" 404
+}
